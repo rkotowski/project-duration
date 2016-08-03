@@ -1,0 +1,1 @@
+let main = require('./components/app');

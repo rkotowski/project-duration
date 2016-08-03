@@ -1,0 +1,9 @@
+Gulp taski - kiedy używać którego :
+ o) compileSass - wiadomo, kompilacja do css
+ o) devBundler  - webpack bundler, pakuje wszystkie pliki js browser-side w public/devAssets
+ o) gulpLivereload - odpala swój browser-side server i odświeża po zmianach w plikach css. Odpalany razem z 'watchem'
+ o) watch - wiadomo
+
+NPM - skrypty odpalane w package.json :
+ o) startProd - symulacja serwera produkcyjnego, kompiluje wszystkie pliki js w public/devAssets przez co można podejżeć czy js odpalany na serwerze się nie wywali
+ o) dev - odpala serwer lokalnie nasłuchując zmian w plikach (po zmianach w plikach serwerowych nastąpi automatyczny restart serwera)
