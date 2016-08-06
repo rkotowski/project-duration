@@ -1,10 +1,13 @@
 import React from 'react';
-import { render } from 'react-dom';
+import { ProjectList } from './project/list'
 
-const Dashboard = React.createClass({
+let Dashboard = React.createClass({
     render() {
         return(
-            <h3>Strona główna</h3>
+            <div className="PageWrapper">
+                <h3>Strona główna</h3>
+                <ProjectList />
+            </div>
         )
     }
 });

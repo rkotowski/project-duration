@@ -1,6 +1,6 @@
 let path = require('path');
-var debug = process.env.NODE_ENV !== 'production';
-var webpack = require('webpack');
+let debug = process.env.NODE_ENV !== 'production';
+let webpack = require('webpack');
 
 //noinspection JSUnresolvedVariable
 module.exports = {
@@ -21,10 +21,7 @@ module.exports = {
                 exclude: '/node_modules',
                 loader: 'babel-loader',
                 query: {
-                    presets: ['es2015', 'react'],
-                    plugins: [
-                        ["babel-root-import"]
-                    ]
+                    presets: ['es2015', 'react']
                 }
             }
         ]
@@ -38,7 +35,9 @@ module.exports = {
             path.resolve(__dirname, 'node_modules')
         ]
     },
-    plugins: debug ? [] : [
+    plugins: debug ? [
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /pl|en-gb/)
+    ] : [
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production')
@@ -49,6 +48,7 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({
             mangle: true,
             sourcemap: false
-        })
+        }),
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /pl|en-gb/)
     ]
 };

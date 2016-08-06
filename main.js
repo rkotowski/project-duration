@@ -1,1 +1,1 @@
-let main = require('./components/app');
+require('./components/app');
