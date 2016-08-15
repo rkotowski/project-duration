@@ -2,6 +2,10 @@ import React from 'react';
 import moment from 'moment';
 
 let ProjectListWrapper = React.createClass({
+    propTypes: {
+        data: React.PropTypes.object.isRequired
+    },
+
     // TODO: 'Invalid date' w 'każdym' 31 dniu miesiąca.
     // 'Każdy' 31 dzień miesiąca widziany jest jako "invalid date". Google twiedzi że to fakap releasowy momentu.
     // Możliwe, że jest na to jakiś fix, trzeba poszukać i to poprawić.

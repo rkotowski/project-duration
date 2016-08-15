@@ -1,9 +1,23 @@
 import React from 'react';
+import _ from 'lodash';
 import ProjectDuration from '../../datepicker/index';
 
+let idCounter = 0;
 let NewProject = React.createClass({
+    propTypes: {
+        clientList: React.PropTypes.array.isRequired,
+        employeeList: React.PropTypes.array.isRequired,
+        projectList: React.PropTypes.array.isRequired
+    },
     render() {
         let defaultClientValue, defaultEmployeeValue;
+
+        // check for array length; if elements not exists initial count value will be set to 0
+        if (this.props.projectList.length) {
+            let lastEl = _.last(this.props.projectList);
+            idCounter = lastEl.id;
+        }
+
         let clientOptions = this.props.clientList.map((opt,i) => {
            if (opt.selected === 'selected') {
                defaultClientValue = opt.value;
@@ -50,21 +64,28 @@ let NewProject = React.createClass({
     saveProject: function (e) {
         e.preventDefault();
 
-        let newProjectArr = {
+        function uniqueId() {
+            let counter = idCounter;
+            return ++counter;
+        }
+
+        let newProject = {
+            id: uniqueId(),
             emplName: this.refs.employeeOption.value,
             client: this.refs.clientOption.value,
             startDate: this.refs.datePicker.state.startDate,
             endDate: this.refs.datePicker.state.endDate
         };
 
-        if(newProjectArr.emplName) {
-            console.log("Dodano pracownika " + newProjectArr.emplName + " do projektu " + newProjectArr.client);
+        if(newProject.emplName) {
+            console.log("Dodano pracownika " + newProject.emplName + " do projektu " + newProject.client);
         }
         this.props.onProjectAdd(
-            newProjectArr.emplName,
-            newProjectArr.client,
-            newProjectArr.startDate,
-            newProjectArr.endDate
+            newProject.id,
+            newProject.emplName,
+            newProject.client,
+            newProject.startDate,
+            newProject.endDate
         );
     }
 });

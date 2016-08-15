@@ -2,6 +2,7 @@ let path = require('path');
 let debug = process.env.NODE_ENV !== 'production';
 let webpack = require('webpack');
 
+// TODO: optymalizacja buildu modułów webpacka
 //noinspection JSUnresolvedVariable
 module.exports = {
     devtoll: debug ? 'cheap-source-map' : null,

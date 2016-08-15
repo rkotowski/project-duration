@@ -2,6 +2,9 @@ import React from 'react';
 import firebase from 'firebase';
 import ProjectListWrapper from './projectListWrapper';
 let ProjectList = React.createClass({
+    propTypes: {
+      projectList: React.PropTypes.array.isRequired
+    },
     render() {
         return(
            <table className="table table-striped table-bordered table-hover">
@@ -51,9 +54,9 @@ let ProjectList = React.createClass({
             let elemToDelete = collectionKeys[itemID];
             firebase.database().ref('projectList').child(elemToDelete).remove();
             collectionKeys.splice(itemID, 1);
-        }
 
-        this.setState({ projectList: projectList });
+            this.setState({ projectList: projectList });
+        }
     }
 });
 

@@ -7,7 +7,7 @@ import firebase from 'firebase';
 
 let Project = React.createClass({
     getInitialState: function () {
-        return{
+        return {
             projectList: [],
             clientList: [],
             employeeList: []
@@ -49,8 +49,12 @@ let Project = React.createClass({
                 };
                 projectList.push(project);
                 that.setState({projectList: projectList});
-            })
+            });
         });
+    },
+    componentWillUnmount: function () {
+    //  TODO: Usunąć tu wszystkie listenery firebase'a
+    //  UP : checkout npm re-base package for this!
     },
     render() {
         return(
@@ -58,19 +62,19 @@ let Project = React.createClass({
                 <div className="panel panel-default">
                     <div className="panel-heading">Dodaj projekt</div>
                     <div className="panel-body">
-                        <NewClient onClientAdd={this.handleClientAdd} />
+                        <NewClient clientList={this.state.clientList} onClientAdd={this.handleClientAdd} />
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">Dodaj pracownika</div>
                     <div className="panel-body">
-                        <NewEmployee onEmployeeAdd={this.handleEmployeeAdd} />
+                        <NewEmployee employeeList={this.state.employeeList} onEmployeeAdd={this.handleEmployeeAdd} />
                     </div>
                 </div>
                 <div className="panel panel-default">
                     <div className="panel-heading">Dodaj pracownika do projektu</div>
                     <div className="panel-body">
-                        <NewProject onProjectAdd={this.handleProjectAdd} clientList={this.state.clientList} employeeList={this.state.employeeList} />
+                        <NewProject onProjectAdd={this.handleProjectAdd} projectList={this.state.projectList} clientList={this.state.clientList} employeeList={this.state.employeeList} />
                     </div>
                 </div>
                 <div className="panel panel-default">
@@ -83,24 +87,24 @@ let Project = React.createClass({
         )
     },
 
-    handleClientAdd: function (name) {
+    handleClientAdd: function (id, name) {
         let newClient = {
-            id: this.state.clientList.length + 1,
+            id: id,
             name: name
         };
         firebase.database().ref().child('clientList').push(newClient)
     },
-    handleEmployeeAdd: function (name) {
+    handleEmployeeAdd: function (id, name) {
         let newEmployee = {
-            id: this.state.employeeList.length + 1,
+            id: id,
             name: name
         };
         firebase.database().ref().child('employeeList').push(newEmployee)
     },
-    handleProjectAdd: function (name, client, startDate, endDate) {
-        // TODO: Po dodaniu nowej kolumny w kolekcji trzeba zaktualizować cały obiekt z danymi (firebase ma metode "child_updated")
+    handleProjectAdd: function (id, name, client, startDate, endDate) {
+
         let newProject = {
-            id: this.state.projectList.length + 1,
+            id: id,
             name: name,
             client: client,
             startDate: startDate.locale('pl').format('DD.MM.YYYY'),

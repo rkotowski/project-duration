@@ -1,7 +1,17 @@
 import React from 'react';
+import _ from 'lodash';
 
+let idCounter = 0;
 let NewEmployee = React.createClass({
+    propTypes: {
+        employeeList: React.PropTypes.array.isRequired
+    },
     render() {
+        // check for array length; if elements not exists initial count value will be set to 0
+        if (this.props.employeeList.length) {
+            let lastEl = _.last(this.props.employeeList);
+            idCounter = lastEl.id;
+        }
         return(
             <form onSubmit={this.saveEmployee} className="form-horizontal col-sm-6">
                <div className="form-group">
@@ -19,13 +29,26 @@ let NewEmployee = React.createClass({
             </form>
         )
     },
+
     saveEmployee: function (e) {
         e.preventDefault();
         let name = this.refs.employeeNameInpt.value.trim();
-        if (name) {
-            console.log("Dodano pracownika :" + name);
+
+        function uniqueId() {
+            let counter = idCounter;
+            return ++counter;
         }
-        this.props.onEmployeeAdd(name);
+
+        let newEmployee = {
+            id: uniqueId(),
+            name: name
+        };
+
+        this.props.onEmployeeAdd(
+            newEmployee.id,
+            newEmployee.name
+        );
+
         this.refs.employeeNameInpt.value = '';
     }
 });

@@ -1,7 +1,17 @@
 import React from 'react';
+import _ from 'lodash';
 
+let idCounter = 0;
 let NewClient = React.createClass({
+    propTypes: {
+        clientList: React.PropTypes.array.isRequired
+    },
     render() {
+        // check for array length; if elements not exists initial count value will be set to 0
+        if (this.props.clientList.length) {
+            let lastEl = _.last(this.props.clientList);
+            idCounter = lastEl.id;
+        }
         return(
             <form onSubmit={this.saveClient} className="form-horizontal col-sm-6">
                 <div className="form-group">
@@ -24,10 +34,21 @@ let NewClient = React.createClass({
         e.preventDefault();
         let name = this.refs.clientNameInpt.value.trim();
 
-        if (name) {
-            console.log("Dodano projekt : " + name);
+        function uniqueId() {
+            let counter = idCounter;
+            return ++counter;
         }
-        this.props.onClientAdd(name);
+        
+        let newClient = {
+            id: uniqueId(),
+            name: name
+        };
+        
+        this.props.onClientAdd(
+            newClient.id,
+            newClient.name
+        );
+
         this.refs.clientNameInpt.value = '';
     }
 });

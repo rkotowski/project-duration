@@ -9,7 +9,9 @@
   },
   "babel": {
     "plugins": [
-      ["babel-root-import"]
+      [
+        "babel-root-import"
+      ]
     ]
   },
   "author": "",
@@ -39,6 +41,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.8",
+    "lodash": "^4.15.0",
     "webpack": "^1.13.1"
   }
 }
