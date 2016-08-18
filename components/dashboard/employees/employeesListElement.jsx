@@ -10,12 +10,16 @@ let EmployeesListElement = React.createClass({
                 <div className="employee col-sm-3">
                     <table className="table table-striped table-bordered table-hover">
                         <thead>
-                            <th>Pracownik</th>
-                            <th>id</th>
+                            <tr>
+                                <th>Pracownik</th>
+                                <th>id</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <td>{this.props.data.name}</td>
-                            <td>{this.props.data.id}</td>
+                            <tr>
+                                <td>{this.props.data.name}</td>
+                                <td>{this.props.data.id}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>

@@ -13,7 +13,7 @@ let Project = React.createClass({
             employeeList: []
         }
     },
-    componentDidMount: function () {
+    componentWillMount: function () {
         let that = this;
         firebase.database().ref('clientList').on('value', function (snapshot) {
             let clientList = [];
@@ -53,8 +53,9 @@ let Project = React.createClass({
         });
     },
     componentWillUnmount: function () {
-    //  TODO: Usunąć tu wszystkie listenery firebase'a
-    //  UP : checkout npm re-base package for this!
+        firebase.database().ref('clientList').off('value');
+        firebase.database().ref('employeeList').off('value');
+        firebase.database().ref('projectList').off('value');
     },
     render() {
         return(

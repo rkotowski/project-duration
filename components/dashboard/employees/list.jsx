@@ -22,6 +22,9 @@ let EmployeeList = React.createClass({
             })
         });
     },
+    componentWillUnmount: function () {
+        firebase.database().ref('employeeList').off('value');
+    },
     render() {
         return (
             <div className="employeeList">
