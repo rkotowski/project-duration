@@ -6,23 +6,10 @@ let EmployeesListElement = React.createClass({
     },
     render() {
         return(
-            <div className="wrapper col-sm-12">
-                <div className="employee col-sm-3">
-                    <table className="table table-striped table-bordered table-hover">
-                        <thead>
-                            <tr>
-                                <th>Pracownik</th>
-                                <th>id</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{this.props.data.name}</td>
-                                <td>{this.props.data.id}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div className="listElement">
+                <div className="col-sm-2">Pracownik</div>
+                <div className="col-sm-8">{this.props.data.name}</div>
+                <div className="col-sm-2">{this.props.data.id}</div>
             </div>
         )
     }

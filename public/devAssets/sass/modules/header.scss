@@ -1,0 +1,25 @@
+.navbar {
+
+  // mobile button
+  .dropdown-toggle {
+    float: right;
+    height: 50px;
+    padding: 15px 15px;
+    line-height: 20px;
+    color: inherit;
+  }
+  .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+  .mobile-menu {
+    @include breakpoint(tablet) {
+      display: none;
+    }
+  }
+
+  // button arrow
+  .caret {
+    margin-left: 5px;
+  }
+}

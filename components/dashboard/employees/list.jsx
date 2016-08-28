@@ -27,7 +27,12 @@ let EmployeeList = React.createClass({
     },
     render() {
         return (
-            <div className="employeeList">
+            <div className="employeeList col-sm-12">
+                <div className="listHead">
+                    <div className="col-sm-2">&nbsp;</div>
+                    <div className="col-sm-8">Klient</div>
+                    <div className="col-sm-2">Info</div>
+                </div>
                 {this.state.employeeList.map((empl, index) => {
                     return <EmployeesListElement key={empl.id} index={index} data={empl} />
                 })}

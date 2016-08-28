@@ -11,10 +11,8 @@ let App = React.createClass({
     render() {
         return (
             <div className="container">
-                <div className="row">
-                    <Header />
-                    {this.props.children}
-                </div>
+                <Header />
+                {this.props.children}
             </div>
         )
     }

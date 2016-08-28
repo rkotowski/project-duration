@@ -1,0 +1,8 @@
+// page breakpoint mixin
+
+@mixin breakpoint($from, $to: false) {
+  @if map-has-key($breakpoints, $from) {
+    $from: map-get($breakpoints,$from);
+    @media screen and #{$from}  { @content; }
+  }
+}

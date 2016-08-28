@@ -5,7 +5,7 @@ let Dashboard = React.createClass({
     render() {
         return(
             <div className="PageWrapper">
-                <h3>Strona główna</h3>
+                <h3 className="pageHeading">Strona główna</h3>
                 <EmployeeList />
             </div>
         )
