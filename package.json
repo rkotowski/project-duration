@@ -7,13 +7,6 @@
     "startProd": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "dev": "webpack-dev-server"
   },
-  "babel": {
-    "plugins": [
-      [
-        "babel-root-import"
-      ]
-    ]
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,15 +17,14 @@
     "jquery": "^3.1.0",
     "moment": "^2.14.1",
     "react": "^15.2.1",
-    "react-datepicker": "^0.28.1",
+    "react-datepicker": "^0.29.0",
     "react-dom": "^15.2.1",
     "react-router": "^2.5.2"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
-    "babel-root-import": "^4.0.1",
-    "cross-env": "^1.0.8",
+    "cross-env": "^2.0.1",
     "gulp": "^3.9.1",
     "gulp-connect": "^4.2.0",
     "gulp-cssmin": "^0.1.7",

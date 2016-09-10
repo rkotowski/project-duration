@@ -1,9 +1,13 @@
 import React from 'react';
 import moment from 'moment';
+import { getEmployee, getClient } from '../../helper/AppHelper';
 
 let ProjectListWrapper = React.createClass({
     propTypes: {
-        data: React.PropTypes.object.isRequired
+        // data --> obiekt z projektem
+        data: React.PropTypes.object.isRequired,
+        employee: React.PropTypes.array.isRequired,
+        client: React.PropTypes.array.isRequired
     },
 
     // TODO: 'Invalid date' w 'każdym' 31 dniu miesiąca.
@@ -26,8 +30,8 @@ let ProjectListWrapper = React.createClass({
         return(
             <tr>
                 <th>{this.props.index + 1}</th>
-                <td>{this.props.data.name}</td>
-                <td>{this.props.data.client}</td>
+                <td>{getEmployee(this.props.data.employe_id, this.props.employee).name}</td>
+                <td>{getClient(this.props.data.client_id, this.props.client).name}</td>
                 <td>{this.props.data.startDate}</td>
                 <td>{this.props.data.endDate}</td>
                 <td>{this.countDaysLeft()}</td>

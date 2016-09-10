@@ -1,7 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
 import ProjectDuration from '../../datepicker/index';
-import { getClient } from '../../helper/AppHelper';
 
 let idCounter = 0;
 let NewProject = React.createClass({
@@ -30,7 +29,7 @@ let NewProject = React.createClass({
            if (opt.selected === 'selected') {
                defaultEmployeeValue = opt.value;
            }
-            return <option key={i} value={opt.name}>{opt.name}</option>
+            return <option key={i} value={opt.id}>{opt.name}</option>
         });
 
         return(
@@ -72,18 +71,15 @@ let NewProject = React.createClass({
 
         let newProject = {
             id: uniqueId(),
-            emplName: this.refs.employeeOption.value,
+            employe_id: this.refs.employeeOption.value,
             client: this.refs.clientOption.value,
             startDate: this.refs.datePicker.state.startDate,
             endDate: this.refs.datePicker.state.endDate
         };
 
-        if(newProject.emplName) {
-            console.log("Dodano pracownika " + newProject.emplName + " do projektu " + getClient(newProject.client, this.props.clientList).name);
-        }
         this.props.onProjectAdd(
             newProject.id,
-            newProject.emplName,
+            newProject.employe_id,
             newProject.client,
             newProject.startDate,
             newProject.endDate

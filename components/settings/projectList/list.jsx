@@ -1,9 +1,12 @@
 import React from 'react';
 import firebase from 'firebase';
 import ProjectListWrapper from './projectListWrapper';
+
 let ProjectList = React.createClass({
     propTypes: {
-      projectList: React.PropTypes.array.isRequired
+      projectList: React.PropTypes.array.isRequired,
+      clientList: React.PropTypes.array.isRequired,
+      employeeList: React.PropTypes.array.isRequired
     },
     render() {
         return(
@@ -21,7 +24,7 @@ let ProjectList = React.createClass({
                 </thead>
                <tbody>
                     {this.props.projectList.map((project, index) => {
-                        return <ProjectListWrapper key={project.id} index={index} data={project} onDeleteProject={this.handleProjectDelete} />;
+                        return <ProjectListWrapper key={project.id} index={index} employee={this.props.employeeList} client={this.props.clientList} data={project} onDeleteProject={this.handleProjectDelete} />;
                     })}
                </tbody>
            </table>

@@ -42,8 +42,8 @@ let Project = React.createClass({
             snapshot.forEach(function (data) {
                 let project = {
                     id: data.val().id,
-                    name: data.val().name,
-                    client: data.val().client,
+                    employe_id: data.val().employe_id,
+                    client_id: data.val().client_id,
                     startDate: data.val().startDate,
                     endDate: data.val().endDate
                 };
@@ -81,7 +81,7 @@ let Project = React.createClass({
                 <div className="panel panel-default">
                     <div className="panel-heading">Zarządzaj projektami</div>
                     <div className="panel-body">
-                        <ProjectList projectList={this.state.projectList} />
+                        <ProjectList projectList={this.state.projectList} clientList={this.state.clientList} employeeList={this.state.employeeList} />
                     </div>
                 </div>
             </div>
@@ -102,12 +102,11 @@ let Project = React.createClass({
         };
         firebase.database().ref().child('employeeList').push(newEmployee)
     },
-    handleProjectAdd: function (id, name, client, startDate, endDate) {
-
+    handleProjectAdd: function (id, employe_id, client_id, startDate, endDate) {
         let newProject = {
             id: id,
-            name: name,
-            client: client,
+            employe_id: parseInt(employe_id),
+            client_id: parseInt(client_id),
             startDate: startDate.locale('pl').format('DD.MM.YYYY'),
             endDate: endDate.locale('pl').format('DD.MM.YYYY')
         };

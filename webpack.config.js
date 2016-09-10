@@ -8,7 +8,7 @@ module.exports = {
     devtoll: debug ? 'cheap-source-map' : null,
     entry: path.resolve(__dirname + '/main.js'),
     output: {
-        path: debug ? './' : __dirname + '/public/assets/js/prodBundle/',
+        path: debug ? __dirname : __dirname + '/public/assets/js/prodBundle/',
         filename: 'index.js'
     },
     devServer: !debug ? [] : {
@@ -19,10 +19,19 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx$/,
-                exclude: '/node_modules',
+                exclude: /node_modules/,
                 loader: 'babel-loader',
                 query: {
                     presets: ['es2015', 'react']
+                }
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+
                 }
             }
         ]

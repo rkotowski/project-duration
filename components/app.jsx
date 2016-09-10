@@ -5,7 +5,8 @@ import Header from './partials/header';
 // import Footer from './partials/footer';
 import Dashboard from './dashboard/index';
 import Settings from './settings/index';
-require('~/config/db');
+
+require('../config/db');
 
 let App = React.createClass({
     render() {
