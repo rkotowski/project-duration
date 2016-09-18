@@ -1,5 +1,6 @@
 // import base config
 @import "base/config";
+@import "base/fonts";
 
 // import mixins
 @import "mixins/breakpoint";
@@ -9,5 +10,8 @@
 @import "modules/form";
 @import "modules/page";
 @import "modules/dashboard";
+
+// import layout components
+@import "layout/layout";
 
 // import plugins

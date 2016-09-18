@@ -1,0 +1,24 @@
+// 	Lato fonts
+//  font path is from public/assets
+
+@font-face {
+  font-family: 'Lato-Regular';
+  src: url('../font/Lato/regular/Lato-Regular.eot');
+  src: url('../font/Lato/regular/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+  url('../font/Lato/regular/Lato-Regular.woff2') format('woff2'),
+  url('../font/Lato/regular/Lato-Regular.woff') format('woff'),
+  url('../font/Lato/regular/Lato-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Lato-Semibold';
+  src: url('../font/Lato/semibold/Lato-Semibold.eot');
+  src: url('../font/Lato/semibold/Lato-Semibold.eot?#iefix') format('embedded-opentype'),
+  url('../font/Lato/semibold/Lato-Semibold.woff2') format('woff2'),
+  url('../font/Lato/semibold/Lato-Semibold.woff') format('woff'),
+  url('../font/Lato/semibold/Lato-Semibold.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+}

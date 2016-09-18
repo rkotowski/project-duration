@@ -31,7 +31,6 @@ let ProjectList = React.createClass({
         )
     },
     handleProjectDelete: function(project) {
-        // TODO: Po usunięciu kolumny trzeba zaktualizować cały obiekt z danymi (firebase ma metode "child_updated")
         let projectList = this.props.projectList;
         let itemID;
 
