@@ -24,21 +24,14 @@ let Project = React.createClass({
         }
     },
 
-    // client name hack, dunno why helper method getClient return undefined. Maybe because render() is always called
-    // multiple times itself and whole data are not loaded before
-    getClientName: function () {
-        let client = getClient(this.props.data.client_id, this.props.client);
-        if (client != undefined) {
-            return client.name;
-        }
-    },
-
     render(){
+        let clientObj = new Object(getClient(this.props.data.client_id, this.props.client));
+        
         return (
             <div className="col-sm-12 project">
                 {this.getProjectIndex(this.props.index)}
                 <div className="col-sm-8">
-                    <span className="clientName">{this.getClientName()}</span>
+                    <span className="clientName">{clientObj.name}</span>
                     <ProjectProgressBar
                         startDate={this.props.data.startDate}
                         endDate={this.props.data.endDate} />

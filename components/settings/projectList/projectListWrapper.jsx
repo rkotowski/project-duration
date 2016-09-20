@@ -27,11 +27,14 @@ let ProjectListWrapper = React.createClass({
         }
     },
     render() {
+        let emplObj = new Object(getEmployee(this.props.data.employe_id, this.props.employee));
+        let clientObj = new Object(getClient(this.props.data.client_id, this.props.client));
+        
         return(
             <tr>
                 <th>{this.props.index + 1}</th>
-                <td>{getEmployee(this.props.data.employe_id, this.props.employee).name}</td>
-                <td>{getClient(this.props.data.client_id, this.props.client).name}</td>
+                <td>{emplObj.name}</td>
+                <td>{clientObj.name}</td>
                 <td>{this.props.data.startDate}</td>
                 <td>{this.props.data.endDate}</td>
                 <td>{this.countDaysLeft()}</td>
