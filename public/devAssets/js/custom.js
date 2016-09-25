@@ -3,6 +3,9 @@
  */
 
 $(document).ready(function () {
-    
+  let dropOptionsMenu = (function () {
+    $('.drop-icons').on('click', function () {
+		  $(this).parent('.options').find('.optionsWrapper').toggleClass('on');
+	  })
+  })();
 });
-// include specific path to main js file in index.html

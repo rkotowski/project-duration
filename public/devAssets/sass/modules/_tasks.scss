@@ -1,0 +1,74 @@
+.TaskWrapper {
+  width: calc(100% - 250px);
+  float: left;
+  background-color: #ffffff;
+}
+.TaskSidebarWrapper {
+  width: 230px;
+  float: left;
+  background-color: #ffffff;
+  margin-right: 20px;
+  position: relative;
+  
+  .options {
+    background-color: #17c4bb;
+    border-radius: 20px;
+    float: right;
+    display: inline-block;
+    width: 50px;
+    padding: 6px 9px 3px 9px;
+    cursor: pointer;
+    margin-top: -5px;
+    transition: .1s all ease-in-out;
+    &:hover {
+      background-color: #16958C;
+    }
+
+    .drop-icons {
+      display: block;
+    }
+    .glyphicon {
+      color: #ffffff;
+    }
+    .glyphicon-cog {
+      font-size: 14px;
+    }
+    .glyphicon-menu-down {
+      font-size: 11px;
+      float: right;
+      top: 4px;
+    }
+    
+    .optionsWrapper {
+      display: none;
+      position: absolute;
+      min-width: 175px;
+      right: 0;
+      z-index: 1000;
+      list-style: none;
+      padding: 0;
+      background-color: #ffffff;
+      margin: 10px 0 0;
+      border: 1px solid #eee;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.175);
+      &.on {
+        display: block;
+      }
+    }
+  }
+}
+
+.TaskWrapper, .TaskSidebarWrapper {
+  .content {
+    padding: 15px;
+  }
+
+  .pageComponentTitle {
+    text-transform: uppercase;
+    color: #17c4bb;
+    font-size: 16px;
+    padding: 12px 0 16px;
+    font-family: "OpenSans-Semibold", sans-serif;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+  }
+}

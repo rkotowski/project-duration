@@ -1,0 +1,68 @@
+.sidebar {
+  &-wrapper {
+    width: 195px;
+    float: left;
+    z-index: 1;
+    position: fixed;
+    height: 100%;
+    background-color: #0f0f0f;
+    padding-top: 68px;
+  }
+
+  &-nav {
+    padding: 0;
+    margin: 0;
+    li {
+      text-align: center;
+      position: relative;
+      a {
+        display: block;
+        line-height: 38px;
+        padding: 5px 15px;
+        width: 100%;
+        color: #ffffff;
+        span {
+          display: block;
+          opacity: .8;
+        }
+        i {
+          font-size: 20px;
+          opacity: .5;
+          top: 15px;
+          -webkit-transition: all .1s ease-in-out;
+          -moz-transition: all .1s ease-in-out;
+          transition: all .1s ease-in-out;
+        }
+
+        &:hover, &:active {
+          text-decoration: none !important;
+          span, i {
+            opacity: 1;
+          }
+          i {
+            color: #17C4BB;
+          }
+        }
+      }
+      &.active {
+        a {
+          span, i {
+            opacity: 1;
+          }
+          i {
+            color: #17C4BB;
+          }
+        }
+        &:before {
+          position: absolute;
+          content: '';
+          width: 4px;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background-color: #17C4BB;
+        }
+      }
+    }
+  }
+}

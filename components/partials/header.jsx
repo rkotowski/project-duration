@@ -1,28 +1,31 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Link } from 'react-router';
+import moment from 'moment';
 
 let Header = React.createClass({
+   getInitialState: function () {
+        return {
+            time: moment().locale('pl').format("DD MMMM YYYY, [godzina] HH:mm:ss")
+        }
+   },
+   componentDidMount: function () {
+       setInterval(function() {
+           this.setState({
+               time: moment().locale('pl').format("DD MMMM YYYY, [godzina] HH:mm:ss")
+           });
+       }.bind(this), 1000);
+   },
    render() {
        return(
            <header className="header">
                <nav className="navbar navbar-default">
                    <div className="navbar-header">
-                       <div className="navbar-brand">Frontend disposition</div>
-                       <a className="dropdown-toggle mobile-menu" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                           Menu <span className="caret"></span>
-                       </a>
-                       <ul className="dropdown-menu">
-                           <li className="btn-default btn-link"><Link to="/">Home</Link></li>
-                           <li className="btn-default btn-link"><Link to="/settings">Settings</Link></li>
-                       </ul>
-                  </div>
-                  <div className="collapse navbar-collapse" id="navigation">
-                      <ul className="nav navbar-nav">
-                          <li className="btn-default btn-link"><Link to="/">Home</Link></li>
-                          <li className="btn-default btn-link"><Link to="/settings">Settings</Link></li>
-                      </ul>
-                  </div>
+                       <div className="navbar-brand">Frontend <span className="burger">&nbsp;</span></div>
+                   </div>
+                   <div className="date-info">
+                       <div className="date-wrapper">
+                           <i className="glyphicon glyphicon-calendar"/> Dzisiaj mamy: {this.state.time}
+                       </div>
+                   </div>
                </nav>
            </header>
        )

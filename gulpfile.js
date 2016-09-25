@@ -8,10 +8,37 @@ let gulp = require('gulp'),
     sourcemaps  = require('gulp-sourcemaps'),
     gulpConnect = require('gulp-connect');
 
+// postcss
+let postcss = require('gulp-postcss'),
+    autoprefixer = require('autoprefixer'),
+    cssnano = require('cssnano'),
+    mqpacker = require('css-mqpacker');
+
 let config = require('./webpack.config');
 
 let devAssetsPath = 'public/devAssets/',
     assetsPath = 'public/assets/';
+
+var processors = [
+    autoprefixer({
+        browsers: [
+            'last 2 version',
+            'safari 5',
+            'ie 8',
+            'ie 9',
+            'opera 12.1',
+            'ios 6',
+            'android 4'
+        ]
+    }),
+    mqpacker,
+    cssnano({
+        discardUnused: false,
+        mergeIdents: false,
+        reduceIdents: false,
+        zindex: false
+    })
+];
 
 let paths = {
     'style': {
@@ -20,6 +47,22 @@ let paths = {
         output: assetsPath + 'css'
     },
     'js': {}
+};
+
+var sassOptions = {
+    onSuccess: function() {
+        gutil.log(gutil.colors.green('sass skompilowany!'));
+    },
+    onError: function(err) {
+        gutil.log(
+            'sass error:',
+            gutil.colors.red(err.message),
+            gutil.colors.white('(' + err.line + ':' + err.column + ')'),
+            gutil.colors.grey(err.file)
+        );
+        gutil.beep();
+    },
+    sync: true
 };
 
 function onBuild(done) {
@@ -39,7 +82,10 @@ function onBuild(done) {
 gulp.task('compileSass', function () {
    gulp.src(paths.style.main)
        .pipe(sourcemaps.init())
-       .pipe(sass())
+       .pipe(sass(sassOptions)).on('error', function (err) {
+           gutil.log(err);
+       })
+       .pipe(postcss(processors))
        .pipe(rename({ suffix:'-min' }))
        .pipe(sourcemaps.write())
        .pipe(gulp.dest(paths.style.output).on('error', gutil.log))

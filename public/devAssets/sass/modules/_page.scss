@@ -1,10 +1,24 @@
-.PageWrapper {
+h1,h2,h3 {
+  margin: 0;
+  color: #666;
+}
 
-  .pageHeading {
-    padding: 0 15px;
-  }
+.PageWrapper {
+  position: relative;
 
   .employeeList .wrapper {
     padding: 0;
+  }
+
+  .pageHeading {
+    padding: 10px 0;
+  }
+
+  .pageComponentTitle {
+
+  }
+
+  .pageComponentContent {
+
   }
 }

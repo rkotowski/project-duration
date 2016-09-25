@@ -1,8 +1,8 @@
 import React from 'react';
-import Project from './project/index';
-import firebase from 'firebase';
+import Sidebar from './sidebar/index';
+import Tasks from './tasks/index';
 
-let Settings = React.createClass({
+let Projects = React.createClass({
   getInitialState: function () {
     return {
       loaderStyle: ''
@@ -10,7 +10,7 @@ let Settings = React.createClass({
   },
   componentWillMount: function () {
     let that = this;
-    firebase.database().ref('projectList').once('value', function() {
+    firebase.database().ref('employeeList').once('value', function() {
       that.setState({loaderStyle: 'none'})
     });
   },
@@ -20,10 +20,11 @@ let Settings = React.createClass({
     };
     return (
       <div className="PageWrapper">
-        <h3 className="pageHeading">Organizacja projektów</h3>
-        <Project />
+        <h3 className="pageHeading">Projekty</h3>
+        <Sidebar />
+        <Tasks />
 
-	      <div className="overlay" style={loaderStyle}></div>
+        <div className="overlay" style={loaderStyle}></div>
         <div className="loader" style={loaderStyle}>
           <div className="wrap">
             <div className="loading outer">
@@ -36,4 +37,4 @@ let Settings = React.createClass({
   }
 });
 
-export default Settings;
+export default Projects;

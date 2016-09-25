@@ -1,17 +1,20 @@
 // import base config
-@import "base/config";
-@import "base/fonts";
+@import "base/_config";
+@import "base/_fonts";
 
 // import mixins
-@import "mixins/breakpoint";
+@import "mixins/_breakpoint";
 
 // import modules
-@import "modules/header";
-@import "modules/form";
-@import "modules/page";
-@import "modules/dashboard";
+@import "modules/_header";
+@import "modules/_form";
+@import "modules/_page";
+@import "modules/_dashboard";
+@import "modules/_tasks";
 
 // import layout components
-@import "layout/layout";
+@import "layout/_layout";
+@import "layout/_sidebar";
+@import "layout/_loader";
 
 // import plugins
