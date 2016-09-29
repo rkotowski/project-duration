@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import * as _ from 'lodash';
 import ProjectDuration from '../../datepicker/index';
 
 let idCounter = 0;
@@ -9,6 +9,11 @@ let NewProject = React.createClass({
         employeeList: React.PropTypes.array.isRequired,
         projectList: React.PropTypes.array.isRequired
     },
+		getInitialState: function () {
+				return {
+					endDateByHours: 0
+				}
+		},
     render() {
         let defaultClientValue, defaultEmployeeValue;
 
@@ -35,32 +40,45 @@ let NewProject = React.createClass({
         return(
             <form onSubmit={this.saveProject} className="form-horizontal col-sm-6">
                 <div className="form-group">
-                    <label htmlFor="inptEmplName" className="col-sm-3 control-label">Pracownik</label>
-                    <div className="col-sm-9">
+                    <label htmlFor="inptEmplName" className="col-sm-4 control-label">Pracownik</label>
+                    <div className="col-sm-8">
                         <select className="form-control" defaultValue={defaultEmployeeValue} name={this.props.name} ref="employeeOption">{employeeOptions}</select>
                     </div>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="option" className="col-sm-3 control-label">Wybierz projekt</label>
-                    <div className="col-sm-9">
+                    <label htmlFor="option" className="col-sm-4 control-label">Wybierz projekt</label>
+                    <div className="col-sm-8">
                         <select className="form-control" defaultValue={defaultClientValue} name={this.props.name} ref="clientOption">{clientOptions}</select>
                     </div>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="datePicker" className="col-sm-3 control-label">Czas realizacji</label>
-                    <div className="col-sm-9">
-                        <ProjectDuration ref="datePicker"/>
+                    <label htmlFor="datePicker" className="col-sm-4 control-label">Rozpoczęcie projektu</label>
+                    <div className="col-sm-8">
+                        <ProjectDuration approxHours={this.state.endDateByHours} ref="datePicker"/>
                     </div>
                 </div>
                 <div className="form-group">
-                    <label className="col-sm-3 control-label">&nbsp;</label>
-                    <div className="col-sm-9">
+									<label htmlFor="timeInHour" className="col-sm-4 control-label">Szacunkowy czas wdrożenia</label>
+	                <div className="col-sm-8">
+		                <div className="col-sm-5 inputNumber">
+			                <input onChange={this.getHours} type="number" min="0" value={this.state.endDateByHours} id="timeInHour" className="form-control" />
+		                </div>
+	                </div>
+                </div>
+                <div className="form-group">
+                    <label className="col-sm-4 control-label">&nbsp;</label>
+                    <div className="col-sm-8">
                         <button type="submit" className="btn btn-default">Dodaj</button>
                     </div>
                 </div>
             </form>
         )
     },
+		getHours: function (event) {
+				return this.setState({
+					endDateByHours: event.target.value
+				})
+		},
     saveProject: function (e) {
         e.preventDefault();
 

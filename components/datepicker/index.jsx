@@ -3,6 +3,10 @@ import DatePicker from 'react-datepicker';
 import Moment from 'moment';
 
 let ProjectDuration = React.createClass({
+		propTypes: {
+			approxHours: React.PropTypes.any.isRequired
+		},
+	
     displayName: 'ProjectDuration',
 
     getInitialState: function() {
@@ -24,6 +28,13 @@ let ProjectDuration = React.createClass({
         });
     },
 
+		test: function () {
+				let availableHours = this.props.approxHours;
+				const oneDay = 7.5;
+				let approxDays = Math.ceil(availableHours / oneDay);
+				console.log("Przewidywany czas wdrożenia: " + approxDays);
+		},
+	
     render: function() {
         return(
             <div>
@@ -38,7 +49,8 @@ let ProjectDuration = React.createClass({
                         className="form-control"
                         locale='pl' />
                 </div>
-                <span className="dash col-sm-2">&ndash;</span>
+	              <button onClick={this.test()}>DUPA</button>
+                {/*    <span className="dash col-sm-2">&ndash;</span>
                 <div className="dateWrapper col-sm-5">
                     <DatePicker
                         selected={this.state.endDate}
@@ -50,7 +62,7 @@ let ProjectDuration = React.createClass({
                         placeholderText="Data końcowa"
                         className="form-control"
                         locale='pl' />
-                </div>
+                </div> */}
             </div>
         )
     }

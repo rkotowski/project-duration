@@ -10,36 +10,40 @@
   margin-right: 20px;
   position: relative;
   
-  .options {
-    background-color: #17c4bb;
-    border-radius: 20px;
+  .optionsWrapper {
     float: right;
-    display: inline-block;
-    width: 50px;
-    padding: 6px 9px 3px 9px;
-    cursor: pointer;
     margin-top: -5px;
-    transition: .1s all ease-in-out;
-    &:hover {
-      background-color: #16958C;
-    }
 
-    .drop-icons {
-      display: block;
-    }
-    .glyphicon {
-      color: #ffffff;
-    }
-    .glyphicon-cog {
-      font-size: 14px;
-    }
-    .glyphicon-menu-down {
-      font-size: 11px;
+    .optionsButton {
+      background-color: #17c4bb;
+      border-radius: 20px;
       float: right;
-      top: 4px;
+      display: inline-block;
+      width: 50px;
+      padding: 6px 9px 3px 9px;
+      cursor: pointer;
+      margin-top: -5px;
+      transition: .1s all ease-in-out;
+      &:hover {
+        background-color: #16958C;
+      }
+
+      .drop-icons {
+        display: block;
+      }
+      .glyphicon {
+        color: #ffffff;
+      }
+      .glyphicon-cog {
+        font-size: 14px;
+      }
+      .glyphicon-menu-down {
+        font-size: 11px;
+        float: right;
+        top: 4px;
+      }
     }
-    
-    .optionsWrapper {
+    .optionsList {
       display: none;
       position: absolute;
       min-width: 175px;
@@ -48,11 +52,54 @@
       list-style: none;
       padding: 0;
       background-color: #ffffff;
-      margin: 10px 0 0;
+      margin: 35px 15px 0 0;
       border: 1px solid #eee;
       box-shadow: 0 6px 12px rgba(0,0,0,0.175);
       &.on {
         display: block;
+      }
+      ul {
+        padding: 0;
+        margin: 0;
+        li:not(.divider) {
+          list-style: none;
+          padding: 8px 16px;
+          color: #6f6f6f;
+          text-decoration: none;
+          display: block;
+          clear: both;
+          font-weight: 300;
+          line-height: 18px;
+          white-space: nowrap;
+          font-size: 14px;
+          cursor: pointer;
+          text-transform: none;
+          &:hover {
+            background-color: #f6f6f6;
+          }
+          a {
+            text-decoration: none;
+            color: #6f6f6f;
+            display: block;
+          }
+        }
+        &:before {
+          content: '';
+          position: absolute;
+          top: -8px;
+          left: auto;
+          right: 9px;
+          display: inline-block;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid #e0e0e0;
+          border-left: 8px solid transparent;
+        }
+      }
+      .divider {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background: #f1f3f6;
       }
     }
   }

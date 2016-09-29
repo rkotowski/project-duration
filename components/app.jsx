@@ -12,7 +12,7 @@ require('../config/db');
 
 let App = React.createClass({
     render() {
-        return (
+        return (  
             <div className="container-fluid">
                 <Header />
                 <div className="sidebar-wrapper">
