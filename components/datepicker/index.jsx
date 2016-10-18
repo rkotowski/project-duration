@@ -3,10 +3,6 @@ import DatePicker from 'react-datepicker';
 import Moment from 'moment';
 
 let ProjectDuration = React.createClass({
-		propTypes: {
-			approxHours: React.PropTypes.any.isRequired
-		},
-	
     displayName: 'ProjectDuration',
 
     getInitialState: function() {
@@ -16,7 +12,7 @@ let ProjectDuration = React.createClass({
         };
     },
 
-    handleChangeStartDate: function(date) {
+		handleChangeStartDate: function(date) {
         this.setState({
             startDate: date
         });
@@ -28,11 +24,8 @@ let ProjectDuration = React.createClass({
         });
     },
 
-		test: function () {
-				let availableHours = this.props.approxHours;
-				const oneDay = 7.5;
-				let approxDays = Math.ceil(availableHours / oneDay);
-				console.log("Przewidywany czas wdrożenia: " + approxDays);
+		isWeekday: function (Moment) {
+				return Moment.isoWeekday() < 6;
 		},
 	
     render: function() {
@@ -49,20 +42,21 @@ let ProjectDuration = React.createClass({
                         className="form-control"
                         locale='pl' />
                 </div>
-	              <button onClick={this.test()}>DUPA</button>
-                {/*    <span className="dash col-sm-2">&ndash;</span>
-                <div className="dateWrapper col-sm-5">
+
+	              {/* Hidden & active end date picker
+                <div className="dateWrapper  col-sm-5">
                     <DatePicker
                         selected={this.state.endDate}
                         startDate={this.state.startDate}
                         endDate={this.state.endDate}
                         minDate={this.state.startDate}
+                        filterDate={this.isWeekday}
                         onChange={this.handleChangeEndDate}
                         dateFormat="DD.MM.YYYY"
                         placeholderText="Data końcowa"
                         className="form-control"
                         locale='pl' />
-                </div> */}
+                </div>*/}
             </div>
         )
     }

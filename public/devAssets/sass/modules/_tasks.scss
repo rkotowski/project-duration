@@ -9,7 +9,41 @@
   background-color: #ffffff;
   margin-right: 20px;
   position: relative;
-  
+
+  ul {
+    padding: 10px 0 0;
+    margin: 0;
+    li:not(.divider) {
+      list-style: none;
+      color: #6f6f6f;
+      text-decoration: none;
+      display: block;
+      clear: both;
+      font-weight: 300;
+      line-height: 18px;
+      white-space: nowrap;
+      font-size: 14px;
+      cursor: pointer;
+      text-transform: none;
+      margin-bottom: 4px;
+      &:hover {
+        background-color: #EEEEEE;
+      }
+      &.active {
+        background-color: #f6f6f6;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+      a {
+        text-decoration: none;
+        color: #6f6f6f;
+        display: block;
+        padding: 8px 16px;
+      }
+    }
+  }
+
   .optionsWrapper {
     float: right;
     margin-top: -5px;
@@ -58,48 +92,23 @@
       &.on {
         display: block;
       }
-      ul {
-        padding: 0;
-        margin: 0;
-        li:not(.divider) {
-          list-style: none;
-          padding: 8px 16px;
-          color: #6f6f6f;
-          text-decoration: none;
-          display: block;
-          clear: both;
-          font-weight: 300;
-          line-height: 18px;
-          white-space: nowrap;
-          font-size: 14px;
-          cursor: pointer;
-          text-transform: none;
-          &:hover {
-            background-color: #f6f6f6;
-          }
-          a {
-            text-decoration: none;
-            color: #6f6f6f;
-            display: block;
-          }
-        }
-        &:before {
-          content: '';
-          position: absolute;
-          top: -8px;
-          left: auto;
-          right: 9px;
-          display: inline-block;
-          border-right: 8px solid transparent;
-          border-bottom: 8px solid #e0e0e0;
-          border-left: 8px solid transparent;
-        }
-      }
       .divider {
         height: 1px;
         margin: 9px 0;
         overflow: hidden;
         background: #f1f3f6;
+      }
+
+      ul:before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: auto;
+        right: 9px;
+        display: inline-block;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid #e0e0e0;
+        border-left: 8px solid transparent;
       }
     }
   }

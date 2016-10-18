@@ -1,7 +1,12 @@
 import React from 'react';
 import Options from './options';
+import ProjectList from './projectList';
 
 let Sidebar = React.createClass({
+	propTypes: {
+		clientList: React.PropTypes.array.isRequired
+	},
+
 	render() {
 		return (
 			<div className="TaskSidebarWrapper">
@@ -9,7 +14,9 @@ let Sidebar = React.createClass({
 					<div className="pageComponentTitle">Projekty
 						<Options />
 					</div>
-					<div className="pageComponentContent"></div>
+					<div className="pageComponentContent">
+						<ProjectList clientList={this.props.clientList} />
+					</div>
 				</div>
 			</div>
 		)

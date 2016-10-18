@@ -20,9 +20,9 @@ let Options = React.createClass({
 					<ul>
 						<li><Link to="/settings">Nowy projekt</Link></li>
 						<li className="divider"></li>
-						<li>Oczekujące</li>
-						<li>W realizacji</li>
-						<li>Zakończone</li>
+						<li><Link to="/projects">Oczekujące</Link></li>
+						<li><Link to="/projects">W realizacji</Link></li>
+						<li><Link to="/projects">Zakończone</Link></li>
 					</ul>
 				</div>
 			</div>
