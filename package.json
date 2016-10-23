@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "startProd": "cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "dev": "webpack-dev-server"
   },
   "author": "",

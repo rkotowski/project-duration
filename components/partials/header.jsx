@@ -23,7 +23,7 @@ let Header = React.createClass({
                    </div>
                    <div className="date-info">
                        <div className="date-wrapper">
-                           <i className="glyphicon glyphicon-calendar"/> Dzisiaj mamy: {this.state.time}
+                           <i className="fa fa-calendar"/> Dzisiaj mamy: {this.state.time}
                        </div>
                    </div>
                </nav>

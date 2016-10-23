@@ -11,7 +11,7 @@ let Sidebar = React.createClass({
 		return (
 			<div className="TaskSidebarWrapper">
 				<div className="content">
-					<div className="pageComponentTitle">Projekty
+					<div className="pageComponentTitle"><b>Projekty</b>
 						<Options />
 					</div>
 					<div className="pageComponentContent">
