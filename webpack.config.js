@@ -1,6 +1,6 @@
-let path = require('path');
-let debug = process.env.NODE_ENV !== 'production';
-let webpack = require('webpack');
+var path = require('path');
+var debug = process.env.NODE_ENV !== 'production';
+var webpack = require('webpack');
 
 // TODO: optymalizacja buildu modułów webpacka
 //noinspection JSUnresolvedVariable

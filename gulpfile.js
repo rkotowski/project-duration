@@ -93,9 +93,9 @@ gulp.task('compileSass', function () {
 });
 
 // gulp dev bundler
-gulp.task('devBundler', function () {
-    webpack(config).watch(100, onBuild());
-});
+// gulp.task('devBundler', function () {
+//     webpack(config).watch(100, onBuild());
+// });
 
 // reload page when spotted css changes
 gulp.task('gulpLivereload', function () {
