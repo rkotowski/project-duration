@@ -7,9 +7,10 @@ let ProjectList = React.createClass({
 	},
 
 	render() {
+		const { clientList } = this.props;
 		return(
 			<ul>
-				{this.props.clientList.map((client) => {
+				{clientList.map((client) => {
 					return <ProjectLink to={`/projects/${client.id}`} key={client.id}>
 						{client.name}
 					</ProjectLink>

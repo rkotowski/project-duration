@@ -3,7 +3,6 @@ $color: #17C4BB;
 
 .loader {
   text-align: center;
-  display: table;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -15,7 +14,6 @@ $color: #17C4BB;
 
 .wrap {
   box-sizing: border-box;
-  display: table-cell;
   vertical-align: middle;
 }
 

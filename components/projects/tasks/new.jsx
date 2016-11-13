@@ -13,12 +13,13 @@ let NewTask = React.createClass({
 	},
 
 	render() {
-		let taskStatusOptions = this.props.taskStatusList.map((opt, i) => {
+		const { taskStatusList, taskList } = this.props;
+		let taskStatusOptions = taskStatusList.map((opt, i) => {
 			return <option key={i} value={opt.id} >{opt.name}</option>
 		}, this);
 
-		if (this.props.taskList.length) {
-			let lastEl = _.last(this.props.taskList);
+		if (taskList.length) {
+			let lastEl = _.last(taskList);
 			idCounter = lastEl.id;
 		}
 

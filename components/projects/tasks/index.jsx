@@ -1,8 +1,10 @@
 import React from 'react';
 import * as _ from 'lodash';
-import firebase from 'firebase';
 import TaskList from './list';
 import TaskForm from './new';
+import { connect } from 'react-redux';
+
+import { fetchTaskList } from '../../../actions/taskActions';
 
 let taskStatusList = [
 	{"id": 1,"name": "Ważne", "color": "red"},
@@ -10,66 +12,53 @@ let taskStatusList = [
 	{"id": 3,"name": "Nowa funkcjonalność", "color": "blue"}
 ];
 
-let Tasks = React.createClass({
+@connect((store) => {
+	return {
+		taskList: store.TaskList.taskList
+	}
+})
+
+class Tasks extends React.Component {
 	propTypes: {
 		clientList: React.PropTypes.array,
 		params: React.PropTypes.object.isRequired
-	},
+	};
 	
-	getInitialState: function () {
-		return {
-			taskList: []
-		}
-	},
+	componentWillMount() {
+		this.props.dispatch(fetchTaskList());
+	}
 	
-	componentWillMount: function () {
-		let that = this;
-		firebase.database().ref('taskList').on('value', function (snapshot) {
-			let taskList = [];
-			snapshot.forEach(function (data) {
-				let task = {
-					id: data.val().id,
-					title: data.val().title,
-					description: data.val().description,
-					status: data.val().status,
-					clientId: data.val().clientId,
-					date: data.val().date
-				};
-				taskList.push(task);
-				that.setState({taskList: taskList});
-			});
-		});
-	},
+	componentWillUnmount() {
+
+	}
 	
-	componentWillUnmount: function () {
-		firebase.database().ref('taskList').off('value');
-	},
-	
-	getClient: function () {
+	getClient() {
 		const clientId = parseInt(this.props.params.projectId);
 		return new Object(_.find(this.props.clientList, { 'id': clientId }));
-	},
+	}
 
 	render() {
-		if (this.props.params.projectId) {
-			let projectId = parseInt(this.props.params.projectId);
+		const { taskList, params } = this.props;
+
+		if (params.projectId) {
+			let projectId = parseInt(params.projectId);
 			return (
 				<div className="TaskWrapper">
 					<div className="content">
 						<div className="pageComponentTitle"><span>Projekt:&nbsp;</span><b>{this.getClient().name}</b></div>
 						<div className="pageComponentContent">
-							<TaskList taskList={this.state.taskList} projectId={projectId} taskStatusList={taskStatusList}/>
-							<TaskForm onTaskAdd={this.handleTaskAdd} projectId={projectId} taskList={this.state.taskList} taskStatusList={taskStatusList}/>
+							<TaskList taskList={taskList} projectId={projectId} taskStatusList={taskStatusList}/>
+							<TaskForm onTaskAdd={this.handleTaskAdd} projectId={projectId} taskList={taskList} taskStatusList={taskStatusList}/>
 						</div>
 					</div>
 				</div>
 			)
-		} else return(
+		} else return (
 			<div></div>
 		)
-	},
+	}
 
-	handleTaskAdd: function (id, title, desc, status, client, date) {
+	handleTaskAdd(id, title, desc, status, client, date) {
 		let newTask = {
 			id: id,
 			title: title,
@@ -81,6 +70,6 @@ let Tasks = React.createClass({
 
 		firebase.database().ref().child('taskList').push(newTask);
 	}
-});
+}
 
 export default Tasks;

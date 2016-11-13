@@ -1,51 +1,44 @@
 import React from 'react';
 import Sidebar from './sidebar/index';
 import Tasks from './tasks/index';
-import firebase from 'firebase';
+import { connect } from 'react-redux';
 
-let Projects = React.createClass({
-  getInitialState: function () {
-    return {
-      loaderStyle: '',
-      clientList: []
-    }
-  },
-  componentWillMount: function () {
-    let that = this;
-    firebase.database().ref('employeeList').once('value', function() {
-      that.setState({loaderStyle: 'none'})
-    });
+import { fetchClientList } from '../../actions/clientsActions';
 
-	  firebase.database().ref('clientList').on('value', function (snapshot) {
-		  let clientList = [];
-		  snapshot.forEach(function (data) {
-			  let client = {
-				  id: data.val().id,
-				  name: data.val().name
-			  };
-			  clientList.push(client);
-			  that.setState({clientList: clientList});
-		  })
-	  });
-  },
+@connect((store) => {
+	return {
+		clientList: store.ClientList.clientList,
+		loader: store.ClientList.fetched
+	}
+})
 
-	componentWillUnmount: function () {
-		firebase.database().ref('employeeList').off('value');
-		firebase.database().ref('clientList').off('value');
-	},
+class Projects extends React.Component {
+	propTypes: {
+		params: React.PropTypes.object.isRequired
+	};
+
+  componentWillMount() {
+	  this.props.dispatch(fetchClientList());
+  }
+	
+	componentWillUnmount() {
+		
+	}
 
   render() {
-    let loaderStyle = {
-      display: this.state.loaderStyle
-    };
+	  const { clientList, loader, params } = this.props;
+	  let styles = {
+		  display: loader == false ? 'block' : 'none'
+	  };
+
     return (
       <div className="PageWrapper">
         <h3 className="pageHeading">Projekty</h3>
-        <Sidebar clientList={this.state.clientList} />
-        <Tasks clientList={this.state.clientList} params={this.props.params} />
+        <Sidebar clientList={clientList} />
+        <Tasks clientList={clientList} params={params} />
 
-        <div className="overlay" style={loaderStyle}></div>
-        <div className="loader" style={loaderStyle}>
+        <div className="overlay" style={styles}></div>
+        <div className="loader" style={styles}>
           <div className="wrap">
             <div className="loading outer">
               <div className="loading inner"></div>
@@ -55,6 +48,6 @@ let Projects = React.createClass({
       </div>
     )
   }
-});
+}
 
 export default Projects;
