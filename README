@@ -1,8 +1,1 @@
-Gulp taski - kiedy używać którego :
- o) compileSass - kompiluje do css
- o) gulpLivereload - Działa jak plugin livereload. Odświeża css bez przeładowania strony. Odpalany razem z 'watchem'
- o) watch - obserwuje zmiany w zdefiniowanych katalogach. Odpala inne dodatkowe taski.
-
-NPM - skrypty odpalane w package.json :
- o) prod - kompiluje wszystkie pliki aplikacji w konfiguracji produkcyjnej
- o) dev - odpala serwer lokalny z konfiguracją deweloperską
+Playing with React & Redux :rocket:
